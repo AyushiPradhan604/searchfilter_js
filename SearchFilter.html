@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Table Search Filter</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+
+    .container {
+      margin: 20px auto;
+      max-width: 600px;
+    }
+
+    h1 {
+      text-align: center;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 10px;
+      box-sizing: border-box;
+      margin-bottom: 20px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    th, td {
+      padding: 10px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+
+    tr:hover {
+      background-color: #f5f5f5;
+    }
+
+    th {
+      background-color: #f2f2f2;
+    }
+  </style>
+  <script>
+    function searchTable() {
+      // Get the input, table, and rows
+      var input, filter, table, tr, td, i, txtValue;
+      input = document.getElementById("searchInput");
+      filter = input.value.toUpperCase();
+      table = document.getElementById("myTable");
+      tr = table.getElementsByTagName("tr");
+
+      // Loop through all table rows and hide those that don't match the search input
+      for (i = 0; i < tr.length; i++) {
+        // Get the first cell (change the index to match the column you want to filter)
+        td = tr[i].getElementsByTagName("td")[0];
+
+        if (td) {
+          // Get the text content of the cell
+          txtValue = td.textContent || td.innerText;
+
+          // Compare the text value with the search input
+          if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            // Show the row if there's a match
+            tr[i].style.display = "";
+          } else {
+            // Hide the row if there's no match
+            tr[i].style.display = "none";
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body>
+  <div class="container">
+    <h1>Table Search Filter</h1>
+    <!-- The input field for searching -->
+    <input type="text" id="searchInput" onkeyup="searchTable()" placeholder="Search by name..">
+
+    <!-- The table to be filtered -->
+    <table id="myTable">
+      <!-- Table header -->
+      <tr>
+        <th>Name</th>
+        <th>Age</th>
+        <th>Country</th>
+      </tr>
+      <!-- Table rows with data -->
+      <tr>
+        <td>Mohan Yadav</td>
+        <td>25</td>
+        <td>USA</td>
+      </tr>
+      <tr>
+        <td>Krishna Murti</td>
+        <td>30</td>
+        <td>Canada</td>
+      </tr>
+      <tr>
+        <td>Balasaheb Wanchha</td>
+        <td>35</td>
+        <td>UK</td>
+      </tr>
+      <tr>
+        <td>Ravi Zopalu</td>
+        <td>28</td>
+        <td>Australia</td>
+      </tr>
+      <tr>
+        <td>Pratik Khandu</td>
+        <td>28</td>
+        <td>Australia</td>
+      </tr>
+      <tr>
+        <td>Ankit Zandu</td>
+        <td>28</td>
+        <td>Australia</td>
+      </tr>
+      <tr>
+        <td>Samu Jumu</td>
+        <td>28</td>
+        <td>Australia</td>
+      </tr>
+    </table>
+  </div>
+</body>
+</html>
